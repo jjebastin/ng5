@@ -1,0 +1,13 @@
+<p>
+  goals works!
+  <a href="" (click)="sendMeHome()"><strong>Take me home</strong></a>
+</p>
+
+<p *ngIf="selGoal">Selected Goal is <strong>"{{ selGoal }}"</strong></p>
+
+<h3>All Goals</h3>
+<ul>
+  <li *ngFor="let goal of goals">
+    {{ goal }}
+  </li>
+</ul>
