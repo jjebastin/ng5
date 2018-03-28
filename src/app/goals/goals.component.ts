@@ -17,22 +17,30 @@ export class GoalsComponent implements OnInit {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private _data: DataService) {
-                this.route.params.subscribe(res => console.log(res.id));
+                //this.route.params.subscribe(params => console.log(params.id));
   }
 
   ngOnInit() {
     this._data.goal.subscribe(res => this.goals=res);
-    this.route.params.subscribe(res => this.goalId=res.id);
-    this.goals.forEach((element,index) => {
-      if(index+1==this.goalId)
-      {
-        this.selGoal=element;
-      }
-    });
+    this.route.params.subscribe(
+      params => {
+         let id= +params['id'];
+         if(id)
+         this.getGoal(id);
+      });
   }
 
   sendMeHome(){
     this.router.navigate(['']);
+  }
+
+  getGoal(id){
+    this.goals.forEach((element,index) => {
+      if(index+1==id)
+      {
+        this.selGoal=element;
+      }
+    });
   }
 
 }
